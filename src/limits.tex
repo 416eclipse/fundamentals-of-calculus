@@ -1,0 +1,231 @@
+\chapter{Limits and Continuity}
+In the real world, you may know a ``limit'' in its English definition as a point or boundary which cannot be exceeded. In fact, in mathematics, limits are central to the definitions of what will make up the core functions of calculus.
+
+For a mathematical function, we may take its ``limit'' by observing the function's output leading up to a certain point.
+
+\section{The Limit of a Function}
+Let us observe a function $f(x)=(x^2-4)/(x-2)$, graphed in Figure \ref{fig:function-example}. At the value $x=2$, the function is undefined, or $0/0$. This is represented by a hollow circle in the graph. Observe what happens as we \textit{approach} the value $x=2$.
+
+\begin{center}
+	\begin{tabular}{| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c|| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c|}
+		\hline
+		$x$    & 1 & 1.5 & 1.9 & 1.99 & 2.01 & 2.1 & 2.5 & 3 \\
+		\hline
+		$f(x)$ & 3 & 3.5 & 3.9 & 3.99 & 4.01 & 4.1 & 4.5 & 5 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{marginfigure}
+	\centering
+	\resizebox{\linewidth}{!}{%
+		\input{rawfigs/ch-limits/limits-function-example-graph.tex}%
+	}
+	\caption{The graph of $f(x)$, where the function is undefined at $x=2$.}
+	\label{fig:function-example}
+\end{marginfigure}
+
+It is clear that as $x$ \textit{approaches} 2, $f(x)$ \textit{approaches} 4. In essence, this is what the ``limit of a function'' means. When we are taking limits, we look at the behavior of a function as it \textit{approaches} a point, not the value at the point itself.
+
+\begin{defn}[Limit of a Function]
+	Let $f$ be a function defined on all $x$ on the open interval $I$ containing $a$, except possibly at $a$ itself. The limit of $f(x)$ as $x$ approaches $a$ is $L$, defined as
+	\begin{equation}
+		\lim_{x\to a} f(x) = L.
+	\end{equation}
+\end{defn}
+
+Thus, for the example above we may simply state that the limit of the function $f(x) = (x^2-4)/(x-2)$ as $x$ approaches 2 is 4, or
+\begin{equation}
+	\lim_{x\to 2} \frac{x^2-4}{x-2} = 4.
+\end{equation}
+
+While this definition may seem grounded enough (it is, for the sake of an introduction), we can more rigorously define the limit using the \textit{Epsilon-Delta ($\epsilon-\delta$) definition of the limit} in the next section. For now, let us evaluate limits.
+
+\section{Limit Theorems}
+\begin{thm}\label{thm:lims}
+	Given that the limits $\lim_{x\to a} f(x)$ and $\lim_{x\to a} g(x)$ exist, then\vspace{0.5em}
+	\begin{enumerate}[itemsep=0.5em]
+		\item For a constant $c$, $\displaystyle\lim_{x\to a}c=c$.
+		\item For a real number $a$, $\displaystyle\lim_{x\to a}x=a$.
+		\item $\displaystyle\lim_{x\to a}[f(x) + g(x)]=\lim_{x\to a} f(x) + \lim_{x\to a} g(x)$.
+		\item $\displaystyle\lim_{x\to a}[f(x) - g(x)]=\lim_{x\to a} f(x) - \lim_{x\to a} g(x)$.
+		\item $\displaystyle\lim_{x\to a}[c\,f(x)]=c \lim_{x\to a} f(x)$.
+		\item $\displaystyle\lim_{x\to a}[f(x)\,g(x)]=f(x)\cdot g(x)$.
+		\item If $\lim_{x\to a} g(x)\neq 0$, $\displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}=\frac{\lim_{x\to a} f(x)}{\lim_{x\to a} g(x)}$.
+		\item For a positive integer $n$, $\displaystyle\lim_{x\to a}[f(x)]^n= \left[\lim_{x\to a} f(x)\right]^n$.
+		\item $\displaystyle\lim_{x\to a}\left[\sqrt[n]{f(x)}\right]=\sqrt[n]{\lim_{x\to a} f(x)}$ provided that the limit $L \in \mathbb{R}$.
+	\end{enumerate}
+\end{thm}
+Fortunately, these theorems are intuitive. It is not unreasonable to assume that a function going to one limit, when added to another function with another limit, results in the sum of their respective limits.
+\begin{exmp}\label{eqn:firstexmp}
+	Evaluate $\displaystyle\lim_{x\to 2} 2x + 1$.
+	\begin{soln}
+		In this case, simply using the theorems will work.
+		\begin{align*}
+			\lim_{x\to 2} 2x + 1 &= 2\left(\lim_{x\to 2} x\right) + 1\\
+			&= 2(2) + 1 \\
+			&= 5\qedhere
+		\end{align*}
+	\end{soln}
+\end{exmp}
+To solve it in a more succint manner, we may directly substitute $x=2$ straight into $2x+1$.
+
+In many cases, direct substitution of the value will lead to getting the correct answer of the limit. Evaluating manually by the table used earlier will verify this to be true.
+
+\begin{exmp}
+	Evaluate $\displaystyle\lim_{t\to \pi}\sin t$.
+	\begin{soln}
+		Similarly,
+		\begin{align*}
+			\lim_{t\to \pi}\sin t &= \sin\left(\lim_{t\to \pi} t\right)\\
+			&= \sin \pi \\
+			&= 0\qedhere
+		\end{align*}
+	\end{soln}
+\end{exmp}
+
+\begin{marginfigure}
+	\centering
+	\resizebox{\linewidth}{!}{%
+		\input{rawfigs/ch-limits/limits-sin-graph.tex}%
+	}
+	\caption{$\sin(x)$ at $[0, 2\pi]$}
+	\label{fig:sin-graph}
+\end{marginfigure}
+
+We see the function $\sin(x)$ graphed in Figure \ref{fig:sin-graph}. Interestingly, given the fact that the period of the sine wave is $2\pi$, its limit at each multiple of $\pi$ ($x$ values of $0,\ \pi,\ 2\pi,\ 3\pi,\ \ldots$) will always be 0.
+
+Let us recall the first example in this chapter. Going back to the graphed function earlier,
+\begin{exmp}
+	Evaluate $\displaystyle\lim_{x\to 2} \dfrac{x^2-4}{x-2}$.
+	\begin{soln}
+		Direct substitution will result in $0/0$. This is undefined, for many reasons beyond the scope of this chapter.
+		
+		For functions where direct substitution fails, we need to find a way to simplify. Notice we can factor out $x^2-4=(x+2)(x-2)$. We may then directly substitute after. We should get 4 as the answer.
+		\begin{align*}
+			\lim_{x\to 2} \frac{x^2-4}{x-2} &= \lim_{x\to 2} \frac{(x+2)(x-2)}{x-2} \\
+			&= \lim_{x\to 2} (x+2) \\
+			&= \left(\lim_{x\to 2} x\right) + 2 \\
+			&= 2+2 \\
+			&= 4
+		\end{align*}
+		As is seen, the expected answer of 4 is obtained.
+	\end{soln}
+\end{exmp}
+
+More ways to simplify will prove helpful.
+
+\begin{exmp}
+	Evaluate $\displaystyle \lim_{x\to 0} \left[\frac{2x^2+4x}{x}+\frac{x\sqrt{4+x}}{2}\right]$
+	\begin{soln}
+		By Theorem \ref{thm:lims}(3), split the function.
+		\begin{align*}
+			\lim_{x\to 0} \left[\frac{2x^2+4x}{x}+\frac{x\sqrt{4+x}}{2}\right] &= \lim_{x\to 0} \frac{2x^2+4x}{x} + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
+			&= \lim_{x\to 0} \frac{x(2x+4)}{x} + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
+			&= \lim_{x\to 0} (2x+4) + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
+			&= 2\left(\lim_{x\to 0} x\right) + 4 + \frac{\left(\displaystyle\lim_{x\to 0} x\right)\left(\sqrt{4+\left(\displaystyle\lim_{x\to 0} x\right)}\right)}{2} \\
+			&= 2(0) + 4 + \frac{0\sqrt{4+0}}{2} \\
+			&= 4\qedhere
+		\end{align*}
+	\end{soln}
+\end{exmp}
+
+It is assumed that the theorems are clear by this point. Showing the limit theorem application step-by-step for each solution will cause unnecessary length. As such, we will show shorter solutions. However, it is still good practice to properly apply the theorems in writing.
+
+\begin{exmp}
+	Evaluate $\displaystyle\lim_{t\to e} \frac{3\sqrt{h}}{h^4+\sqrt{3h}}$.
+	\begin{soln}
+		This is your reminder to look at the variables used in the limit, and what is in the function. The limit is as $t$ approaches $e$. However, there is no $t$ variable in the equation. By Theorem \ref{thm:lims}(1),
+		\[\lim_{t\to e} \frac{3\sqrt{h}}{h^4+\sqrt{3h}}=\frac{3\sqrt{h}}{h^4+\sqrt{3h}}.\qedhere\]
+	\end{soln}
+\end{exmp}
+
+\begin{exmp}
+	Evaluate $\displaystyle\lim_{x\to -1}\frac{x^3+1}{x+1}$.
+	\begin{soln}
+		Direct substitution fails, since $\left((-1)^3+1\right)/\left(-1+1\right)=0/0$.
+		
+		Thus, we have to simplifying by recalling factorization.
+		\bmarginnote{Recall the sum of cubes which is $x^3 + a^3 = (x + a)(x^2 - ax + a^2)$.}
+		\begin{align*}
+			\lim_{x\to -1}\frac{x^3+1}{x+1} &= \lim_{x\to -1}\frac{(x+1)(x^2-x+1)}{x+1} \\
+			&= \lim_{x\to -1} \left(x^2-x+1 \right) \\
+			&= -1^2 - 1 + 1 \\
+			&= 1\qedhere
+		\end{align*}
+	\end{soln}
+\end{exmp}
+
+
+
+\section{Epsilon-Delta Definition of the Limit}
+Unfortunately, the word \textit{approaches} is not good enough for rigor in mathematical description. What does approaching even mean? \textit{How} does $x$ approach $a$?
+
+By rephrasing the earlier definition, we may say that \textit{if $x$ is within a certain tolerance level of $a$, then the corresponding value $y=f(x)$ is within a certain tolerance level of $L$.}
+\begin{defn}[$\epsilon-\delta$ Definition of the Limit]
+	Let $f$ be a function defined on all $x$ on the open interval $I$ containing $a$, except possibly at $a$ itself. The limit of $f(x)$ as $x$ approaches $a$ is $L$, defined as
+	\begin{equation}
+		\lim_{x\to a} f(x) = L.
+	\end{equation}
+	if for every $\epsilon > 0$, however small, there exists a $\delta > 0$ such that $|f(x)-L| < \epsilon$ whenever $0 < |x-a| < \delta$.
+\end{defn}
+Epsilon-Delta proofs involve first finding and choosing a $\delta$ value, and then beginning the formal proof with the chosen $\delta$ value. Let us prove Example \ref{eqn:firstexmp} rigorously.
+\begin{exmp}
+	Prove that $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
+	\begin{soln}
+		Given the definition, we must show that $|2x + 1 - 5| < \epsilon$ whenever $0 < |x-2| < \delta$. To begin, we must first find the $\delta$ we need. \textit{Note that this is not part of the proper proof!}
+		\begin{align*}
+			|2x + 1 - 5|<\epsilon &= |2x - 4|<\epsilon \\
+			&=2|x - 2|<\epsilon \\
+			&=|x - 2|<\frac{\epsilon}{2}
+		\end{align*}
+		Choose $\delta=\epsilon/2$. With this $\delta$, we subsitute it back into the algebraic steps to prove the limit.
+	\end{soln}
+	\begin{proof}
+		Given $\epsilon > 0$, choose $\delta = \dfrac{\epsilon}{2}.$ Assume that $0< |x-2| <\delta$. Then,
+		\[ |(2x + 1) - 5| = |2x - 4| = 2|x - 2| < 2\delta = 2\left(\frac{\epsilon}{2}\right) = \epsilon\]
+		Thus,
+		\[\text{if }0 < |x-2| < \delta \text{ then }|(2x + 1) - 5| < \epsilon.\] Therefore, by definition of a limit, $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
+	\end{proof}
+\end{exmp}
+
+\section{One-Sided Limits}
+The \textit{Heaviside function} $H$, named after Oliver Heaviside (1850-1925), represents a signal that switches on at a specified time and stays switched on indefinitely.
+
+\begin{equation}
+	H(x) := \begin{cases}
+		1 & x \geq 0 \\
+		0 & x < 0
+	\end{cases}
+\end{equation}
+
+\begin{marginfigure}
+	\centering
+	\resizebox{\linewidth}{!}{%
+		\input{rawfigs/ch-limits/limits-heaviside.tex}%
+	}
+	\caption{The \textit{Heaviside function} $H(x)$, where it breaks at $x=0$.}
+	\label{fig:heaviside-func}
+\end{marginfigure}
+
+It is interesting because if we take the limit of $H(x)$ at $x=0$, what do we get? Remember, the value at 0 is not automatically its limit at 0.
+
+From the left (negative values), we see the function approaches 0. This is denoted as
+\[\lim_{x\to 0^-} H(x) = 0.\]
+From the right (positive values), the function approaches 1. This is denoted as
+\[\lim_{x\to 0^+} H(x) = 1.\]
+
+The previous principles and theorems discussed still hold for one-sided limits. In relating the ordinary limit and one-sided limits,
+
+\begin{thm}
+	For a function $f(x)$, its limit at point $a$, $\lim_{x\to a} f(x)$ exists if and only if both of its one-sided limits $\lim_{x\to a^-} f(x)$ and $\lim_{x\to a^+} f(x)$ also exist.
+\end{thm}
+
+
+
+
+\section{Continuity of a Function}
+\begin{defn}[Continuity at $a$]
+	A function $f(x)$ is said to be continuous at $a$ when $f(a)$ exists, $\lim_{x\to a} f(x)$ exists, and $\lim_{x\to a} f(x) = f(a)$.
+\end{defn}
+Further, we may say that if $f(x)$ is continuous on $(-\infty, \infty)$, the function is continuous everywhere.

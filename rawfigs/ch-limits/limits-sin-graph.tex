@@ -1,0 +1,21 @@
+\begin{tikzpicture}[>=stealth, scale=0.8]
+	% Axes
+	\begin{axis}[
+		axis lines = middle,
+		xlabel = {$x$},
+		ymin = -1.2, ymax = 1.2,
+		xmin = 0, xmax = 6.5,
+		domain = 0:2*pi,
+		samples = 100,
+		trig format plots=rad, 
+		y axis line style={draw=none},
+		xtick={3.1416},
+		xticklabels={$\pi$},
+		ytick=\empty,
+		xticklabel style={yshift=-2mm}
+	]
+		
+	\addplot[line width=1.2pt, mathPurple] {sin(x)};
+	\addplot[dashed, gray!70] coordinates {(3.1416, -1.2) (3.1416, 1.2)};
+	\end{axis}
+\end{tikzpicture}

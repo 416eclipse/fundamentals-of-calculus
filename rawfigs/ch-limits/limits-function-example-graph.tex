@@ -1,0 +1,17 @@
+\begin{tikzpicture}[>=stealth, scale=0.8]
+	% Axes
+	\draw[->] (-3, 0) -- (4.5, 0) node[below] {$x$};
+	\draw[->] (0, -1) -- (0, 6.5) node[left] {$y$};
+	
+	\draw[dashed, gray!70] (2,0) -- (2,4);
+	\draw[dashed, gray!70] (0,4) -- (2,4);
+	
+	% Axis tick labels
+	\draw (2, 0.1) -- (2, -0.1) node[below, font=\footnotesize] {$2$};
+	\draw (0.1, 4) -- (-0.1, 4) node[left, font=\footnotesize] {$4$};
+	
+	% Graph line and discontinuity
+	\draw[line width=1.2pt, mathPurple] (-3, -1) -- (1.92, 3.92);
+	\draw[line width=1.2pt, mathPurple] (2.08, 4.08) -- (4.5, 6.5);
+	\draw[line width=1.2pt, mathPurple, fill=white] (2,4) circle (2.5pt);
+\end{tikzpicture}

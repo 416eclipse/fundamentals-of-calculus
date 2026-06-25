@@ -1,0 +1,76 @@
+% Title page stuff
+\title{Fundamentals of Calculus}
+\author{Daigo Katagri}
+\date{Summer of 2026}
+
+% Page setup
+\usepackage{sidenotes}
+\usepackage{etoolbox}
+\usepackage{mdframed}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	outer=2.7in,
+	inner=0.75in,
+	top=0.85in,
+	bottom=0.85in,
+	marginparwidth=2in,
+	marginparsep=0.3in
+}
+
+% General typesetting
+\usepackage{enumitem}
+\setlist[itemize,enumerate]{noitemsep, topsep=0pt}
+
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+%\usepackage[scale=0.92]{tgheros}
+\usepackage{biolinum}
+
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+% Change figure captions
+\usepackage{caption}
+\captionsetup[figure]{labelfont={sf,bf}, textfont=rm}
+\DeclareCaptionStyle{marginfigure}{font=footnotesize, labelfont={sf,bf}, labelsep=space}
+\DeclareCaptionStyle{sidecaption}{labelfont={sf,bf}, labelsep=space}
+\DeclareCaptionStyle{widefigure}{labelfont={sf,bf}, labelsep=space}
+
+% Change figure numbering to 1, 2, 3...
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+% Main colors
+\usepackage{xcolor}
+\definecolor{mathPurple}{HTML}{7F22A7} % Bright, true purple
+\definecolor{mathGreen}{HTML}{108A64}  % Balanced secondary green
+\definecolor{bgPurple}{HTML}{F9F0FC}   % Ultra-light purple fill
+\definecolor{bgGreen}{HTML}{EFF8F5}    % Ultra-light green fill
+\definecolor{textDark}{HTML}{242528}   % Off-black for crisp text
+
+\renewcommand{\arraystretch}{1.5} 
+
+% For math envis
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+
+\newtheoremstyle{sans-def}
+{\topsep}{\topsep}{}{}{\bfseries\sffamily}{}{.5em}{}
+\theoremstyle{sans-def}
+\mdfdefinestyle{defnbg}{backgroundcolor=bgPurple, linewidth=0pt, innertopmargin=1pt}
+
+\newtheorem{defn}{Definition}[chapter]
+\surroundwithmdframed[style=defnbg]{defn}
+
+\newtheorem{exmp}{Example}[chapter]
+
+\newenvironment{soln}
+{\renewcommand{\qedsymbol}{$\blacksquare$}%
+	\begin{proof}[Solution]}
+	{\end{proof}}
+
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=figs/]
