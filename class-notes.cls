@@ -27,7 +27,16 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{mathpazo}   % Palatino for body text and math
 \RequirePackage{biolinum}   % Biolinum for sans-serif text
-\RequirePackage{sectsty}
+
+\usepackage[immediate]{silence}
+\WarningFilter[temp]{latex}{Command} % silence the warning
+\usepackage{sectsty}
+\DeactivateWarningFilters[temp] % So nothing unrelated gets silenced
+
+\makeatletter % disable the runtime redefinitions
+\let\SS@makeulinesect\relax
+\let\SS@makeulinepartchap\relax
+\makeatother
 \allsectionsfont{\sffamily}
 
 % --- General Typesetting ---
@@ -35,6 +44,7 @@
 \setlist[itemize,enumerate]{noitemsep, topsep=0pt}
 \RequirePackage{array}
 \renewcommand{\arraystretch}{1.5} 
+\RequirePackage{microtype}
 
 % --- Sidenotes & Margins ---
 \RequirePackage{sidenotes}
@@ -105,6 +115,6 @@
 \newcommand{\boxmarker}{\textcolor{mathGreen}{$\blacksquare$}\hspace{0.5em}}
 \newcommand{\bmarginnote}[1]{\marginpar{\footnotesize\boxmarker\color{textDark} #1}}
 
-\AtBeginDocument{
+\AddToHook{begindocument/before}{
 	\RequirePackage[bookmarks=true, hidelinks]{hyperref}
 }

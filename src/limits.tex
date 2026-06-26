@@ -7,11 +7,11 @@ For a mathematical function, we may take its ``limit'' by observing the function
 Let us observe a function $f(x)=(x^2-4)/(x-2)$, graphed in Figure \ref{fig:function-example}. At the value $x=2$, the function is undefined, or $0/0$. This is represented by a hollow circle in the graph. Observe what happens as we \textit{approach} the value $x=2$.
 
 \begin{center}
-	\begin{tabular}{| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c|| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c|}
+	\begin{tabular}{| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c| >{\color{mathGreen}}c|}
 		\hline
-		$x$    & 1 & 1.5 & 1.9 & 1.99 & 2.01 & 2.1 & 2.5 & 3 \\
+		$x$    & 1 & 1.5 & 1.9 & 1.99 & $\rightarrow 2 \leftarrow$ & 2.01 & 2.1 & 2.5 & 3 \\
 		\hline
-		$f(x)$ & 3 & 3.5 & 3.9 & 3.99 & 4.01 & 4.1 & 4.5 & 5 \\
+		$f(x)$ & 3 & 3.5 & 3.9 & 3.99 & ? & 4.01 & 4.1 & 4.5 & 5 \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -39,7 +39,42 @@ Thus, for the example above we may simply state that the limit of the function $
 	\lim_{x\to 2} \frac{x^2-4}{x-2} = 4.
 \end{equation}
 
-While this definition may seem grounded enough (it is, for the sake of an introduction), we can more rigorously define the limit using the \textit{Epsilon-Delta ($\epsilon-\delta$) definition of the limit} in the next section. For now, let us evaluate limits.
+While this definition may seem grounded enough (it is, for the sake of an introduction), we can more rigorously define the limit using the \textit{Epsilon-Delta ($\epsilon-\delta$) definition of the limit} in the next section.
+
+\section{Epsilon-Delta Definition of the Limit}
+Unfortunately, the word \textit{approaches} is not good enough for rigor in mathematical description. What does approaching even mean? \textit{How} does $x$ approach $a$?
+
+By rephrasing the earlier definition, we may say that \textit{if $x$ is within a certain tolerance level of $a$, then the corresponding value $y=f(x)$ is within a certain tolerance level of $L$.}
+\begin{defn}[$\epsilon-\delta$ Definition of the Limit]
+	Let $f$ be a function defined on all $x$ on the open interval $I$ containing $a$, except possibly at $a$ itself. The limit of $f(x)$ as $x$ approaches $a$ is $L$, defined as
+	\begin{equation}
+		\lim_{x\to a} f(x) = L.
+	\end{equation}
+	if for every $\epsilon > 0$, however small, there exists a $\delta > 0$ such that $|f(x)-L| < \epsilon$ whenever $0 < |x-a| < \delta$.
+\end{defn}
+As with a lot of mathematical concepts, it will help if we visualize these ``tolerances'' with our limit definition.
+
+While epsilon-Delta proofs involve choosing a $\delta$ value first then conclude that $|f(x)-L|<\epsilon$, we actually have to do some \textit{scratch work}.
+
+First, we begin with $|f(x)-L|<\epsilon$, then manipulate that expression algebraically to get something similar to $|x-a|<\ $\textit{something}, then choosing a $\delta$ value, which is what we begin the formal proof with. Let us prove Example \ref{eqn:firstexmp} rigorously.
+\begin{exmp}
+	Prove that $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
+	\begin{soln}
+		Given the definition, we must show that $|2x + 1 - 5| < \epsilon$ whenever $0 < |x-2| < \delta$. To begin, we must first find the $\delta$ we need. \textit{Note that this is not part of the proper proof!}
+		\begin{align*}
+			|2x + 1 - 5|<\epsilon &= |2x - 4|<\epsilon \\
+			&=2|x - 2|<\epsilon \\
+			&=|x - 2|<\frac{\epsilon}{2}
+		\end{align*}
+		Choose $\delta=\epsilon/2$. With this $\delta$, we subsitute it back into the algebraic steps to prove the limit.
+	\end{soln}
+	\begin{proof}
+		Given $\epsilon > 0$, choose $\delta = \dfrac{\epsilon}{2}.$ Assume that $0< |x-2| <\delta$. Then,
+		\[ |(2x + 1) - 5| = |2x - 4| = 2|x - 2| < 2\delta = 2\left(\frac{\epsilon}{2}\right) = \epsilon\]
+		Thus,
+		\[\text{if }0 < |x-2| < \delta \text{ then }|(2x + 1) - 5| < \epsilon.\] Therefore, by definition of a limit, $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
+	\end{proof}
+\end{exmp}
 
 \section{Limit Theorems}
 \begin{thm}\label{thm:lims}
@@ -56,7 +91,8 @@ While this definition may seem grounded enough (it is, for the sake of an introd
 		\item $\displaystyle\lim_{x\to a}\left[\sqrt[n]{f(x)}\right]=\sqrt[n]{\lim_{x\to a} f(x)}$ provided that the limit $L \in \mathbb{R}$.
 	\end{enumerate}
 \end{thm}
-Fortunately, these theorems are intuitive. It is not unreasonable to assume that a function going to one limit, when added to another function with another limit, results in the sum of their respective limits.
+Fortunately, these theorems are intuitive. It is not unreasonable to assume that a function going to one limit, when added to another function with its own limit, results in the sum of their respective limits.
+All of these theorems are provable using the Epsilon-Delta definition. In many other texts, these are called the \textit{Limit Laws} instead. 
 \begin{exmp}\label{eqn:firstexmp}
 	Evaluate $\displaystyle\lim_{x\to 2} 2x + 1$.
 	\begin{soln}
@@ -123,7 +159,7 @@ More ways to simplify will prove helpful.
 			\lim_{x\to 0} \left[\frac{2x^2+4x}{x}+\frac{x\sqrt{4+x}}{2}\right] &= \lim_{x\to 0} \frac{2x^2+4x}{x} + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
 			&= \lim_{x\to 0} \frac{x(2x+4)}{x} + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
 			&= \lim_{x\to 0} (2x+4) + \lim_{x\to 0} \frac{x\sqrt{4+x}}{2} \\
-			&= 2\left(\lim_{x\to 0} x\right) + 4 + \frac{\left(\displaystyle\lim_{x\to 0} x\right)\left(\sqrt{4+\left(\displaystyle\lim_{x\to 0} x\right)}\right)}{2} \\
+			&= 2\left(\lim_{x\to 0} x\right) + 4 + \frac{\left(\displaystyle\lim_{x\to 0} x\right)\sqrt{4+\left(\displaystyle\lim_{x\to 0} x\right)}}{2} \\
 			&= 2(0) + 4 + \frac{0\sqrt{4+0}}{2} \\
 			&= 4\qedhere
 		\end{align*}
@@ -145,8 +181,7 @@ It is assumed that the theorems are clear by this point. Showing the limit theor
 	\begin{soln}
 		Direct substitution fails, since $\left((-1)^3+1\right)/\left(-1+1\right)=0/0$.
 		
-		Thus, we have to simplifying by recalling factorization.
-		\bmarginnote{Recall the sum of cubes which is $x^3 + a^3 = (x + a)(x^2 - ax + a^2)$.}
+		Thus, we have to simplify by recalling factorization.\bmarginnote{Recall the sum of cubes which is $x^3 + a^3 = (x + a)(x^2 - ax + a^2)$.}
 		\begin{align*}
 			\lim_{x\to -1}\frac{x^3+1}{x+1} &= \lim_{x\to -1}\frac{(x+1)(x^2-x+1)}{x+1} \\
 			&= \lim_{x\to -1} \left(x^2-x+1 \right) \\
@@ -156,38 +191,6 @@ It is assumed that the theorems are clear by this point. Showing the limit theor
 	\end{soln}
 \end{exmp}
 
-
-
-\section{Epsilon-Delta Definition of the Limit}
-Unfortunately, the word \textit{approaches} is not good enough for rigor in mathematical description. What does approaching even mean? \textit{How} does $x$ approach $a$?
-
-By rephrasing the earlier definition, we may say that \textit{if $x$ is within a certain tolerance level of $a$, then the corresponding value $y=f(x)$ is within a certain tolerance level of $L$.}
-\begin{defn}[$\epsilon-\delta$ Definition of the Limit]
-	Let $f$ be a function defined on all $x$ on the open interval $I$ containing $a$, except possibly at $a$ itself. The limit of $f(x)$ as $x$ approaches $a$ is $L$, defined as
-	\begin{equation}
-		\lim_{x\to a} f(x) = L.
-	\end{equation}
-	if for every $\epsilon > 0$, however small, there exists a $\delta > 0$ such that $|f(x)-L| < \epsilon$ whenever $0 < |x-a| < \delta$.
-\end{defn}
-Epsilon-Delta proofs involve first finding and choosing a $\delta$ value, and then beginning the formal proof with the chosen $\delta$ value. Let us prove Example \ref{eqn:firstexmp} rigorously.
-\begin{exmp}
-	Prove that $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
-	\begin{soln}
-		Given the definition, we must show that $|2x + 1 - 5| < \epsilon$ whenever $0 < |x-2| < \delta$. To begin, we must first find the $\delta$ we need. \textit{Note that this is not part of the proper proof!}
-		\begin{align*}
-			|2x + 1 - 5|<\epsilon &= |2x - 4|<\epsilon \\
-			&=2|x - 2|<\epsilon \\
-			&=|x - 2|<\frac{\epsilon}{2}
-		\end{align*}
-		Choose $\delta=\epsilon/2$. With this $\delta$, we subsitute it back into the algebraic steps to prove the limit.
-	\end{soln}
-	\begin{proof}
-		Given $\epsilon > 0$, choose $\delta = \dfrac{\epsilon}{2}.$ Assume that $0< |x-2| <\delta$. Then,
-		\[ |(2x + 1) - 5| = |2x - 4| = 2|x - 2| < 2\delta = 2\left(\frac{\epsilon}{2}\right) = \epsilon\]
-		Thus,
-		\[\text{if }0 < |x-2| < \delta \text{ then }|(2x + 1) - 5| < \epsilon.\] Therefore, by definition of a limit, $\displaystyle\lim_{x\to 2} 2x+1 = 5$.
-	\end{proof}
-\end{exmp}
 
 \section{One-Sided Limits}
 The \textit{Heaviside function} $H$, named after Oliver Heaviside (1850-1925), represents a signal that switches on at a specified time and stays switched on indefinitely.
@@ -225,7 +228,25 @@ The previous principles and theorems discussed still hold for one-sided limits. 
 
 
 \section{Continuity of a Function}
-\begin{defn}[Continuity at $a$]
+\begin{defn}[Continuity at $a$]\label{defn:continuity}
 	A function $f(x)$ is said to be continuous at $a$ when $f(a)$ exists, $\lim_{x\to a} f(x)$ exists, and $\lim_{x\to a} f(x) = f(a)$.
 \end{defn}
 Further, we may say that if $f(x)$ is continuous on $(-\infty, \infty)$, the function is continuous everywhere.
+\begin{thm}
+	For two continuous functions $f$ and $g$, The functions $f+g$, $f-g$, $fg$, and $f/g$ (only when $g\neq 0$) are also continuous.
+\end{thm}
+\begin{proof}
+	To begin this proof, we will rely on the aforementioned limit theorems. Let us focus on the addition of the two functions.
+	
+	By Definition \ref{defn:continuity}, we need to show that
+	\[\lim_{x\to a}[(f+g)(x)] = (f+g)(a).\]
+	
+	Using the definition of function addition, $(f+g)(x) = f(x) + g(x)$. Thus,
+	\begin{align*}
+		\lim_{x\to a}[f(x)+g(x)] &= (f+g)(a) \\
+		\lim_{x\to a} f(x) + \lim_{x\to a} g(x) &= (f+g)(a) \\
+		f(a) + g(a) &= (f+g)(a) \\
+		(f + g)(a) &= (f+g)(a)
+	\end{align*}
+	The proofs for the other three function operations are left as exercises to the reader.
+\end{proof}
